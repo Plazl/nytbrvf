@@ -1,6 +1,7 @@
 var myGamePiece;
 var myObstacles = [];
 var myScore;
+var accelerate;
 
 function startGame() {
     myGamePiece = new component(30, 30, "red", 10, 120);
@@ -111,14 +112,14 @@ function everyinterval(n) {
     return false;
 }
 
-function accelerate(a) {
-    myGamePiece.gravity = a;
+function accelerate() {
+    myGamePiece.gravity = accelerate;
 }
 window.addEventListener('keydown', function (no){
  if (window.key === '32') {
-    accelerate(-0.5);
+      accelerate = -0.5
     }
     else {
-      accelerate(0.5)
+      accelerate = 0.5
     }
  });
