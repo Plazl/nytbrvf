@@ -111,8 +111,8 @@ function everyinterval(n) {
     return false;
 }
 
-function accelerate(n) {
-    myGamePiece.gravity = n;
+function accelerate(a) {
+    myGamePiece.gravity = a;
 }
 window.addEventListener('keydown', function (no){
  if (window.key === '32') {
