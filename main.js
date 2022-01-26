@@ -1,7 +1,7 @@
+
 var myGamePiece;
 var myObstacles = [];
 var myScore;
-
 
 function startGame() {
     myGamePiece = new component(30, 30, "red", 10, 120);
@@ -19,14 +19,6 @@ var myGameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea, 20);
-          window.addEventListener('keydown', function (e) {
-      myGameArea.key = 37;
-              accelerate(-0.5)
-    })
-    window.addEventListener('keyup', function (e) {
-      myGameArea.key = false;
-        accelerate(0.5)
-    })
         },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -91,8 +83,6 @@ function updateGameArea() {
         if (myGamePiece.crashWith(myObstacles[i])) {
             return;
         } 
-}
-
     }
     myGameArea.clear();
     myGameArea.frameNo += 1;
@@ -115,7 +105,7 @@ function updateGameArea() {
     myScore.update();
     myGamePiece.newPos();
     myGamePiece.update();
-
+}
 
 function everyinterval(n) {
     if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
@@ -124,5 +114,12 @@ function everyinterval(n) {
 
 function accelerate(n) {
     myGamePiece.gravity = n;
+               accelerate.addEventListener('keydown', function (e) {
+      accelerate.key = 38;
+              accelerate(-0.5)
+    })
+    accelerate.addEventListener('keyup', function (e) {
+      accelerate.key = false;
+        accelerate(0.5)
+    })
 }
-
