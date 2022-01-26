@@ -1,7 +1,7 @@
 var myGamePiece;
 var myObstacles = [];
 var myScore;
-var accelerate;
+
 
 function startGame() {
     myGamePiece = new component(30, 30, "red", 10, 120);
@@ -115,7 +115,7 @@ function updateGameArea() {
     myScore.update();
     myGamePiece.newPos();
     myGamePiece.update();
-}
+
 
 function everyinterval(n) {
     if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
@@ -124,8 +124,5 @@ function everyinterval(n) {
 
 function accelerate(n) {
     myGamePiece.gravity = n;
-    if (hasStarted == false) {
-      
-    }
 }
 
