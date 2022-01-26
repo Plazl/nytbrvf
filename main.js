@@ -19,6 +19,14 @@ var myGameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea, 20);
+          window.addEventListener('keydown', function (e) {
+      myGameArea.key = 37;
+              accelerate(-0.5)
+    })
+    window.addEventListener('keyup', function (e) {
+      myGameArea.key = false;
+        accelerate(0.5)
+    })
         },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -83,6 +91,8 @@ function updateGameArea() {
         if (myGamePiece.crashWith(myObstacles[i])) {
             return;
         } 
+}
+
     }
     myGameArea.clear();
     myGameArea.frameNo += 1;
@@ -112,14 +122,10 @@ function everyinterval(n) {
     return false;
 }
 
-function accelerate() {
-    myGamePiece.gravity = accelerate;
+function accelerate(n) {
+    myGamePiece.gravity = n;
+    if (hasStarted == false) {
+      
+    }
 }
-window.addEventListener('keydown', function (no){
- if (window.key === '32') {
-      accelerate = -0.5
-    }
-    else {
-      accelerate = 0.5
-    }
- });
+
