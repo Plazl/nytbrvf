@@ -1,4 +1,3 @@
-
 var myGamePiece;
 var myObstacles = [];
 var myScore;
@@ -111,15 +110,18 @@ function everyinterval(n) {
     if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
     return false;
 }
+window.addEventListener("keydown", function (e){
+  event.key = e.keyCode
+  if (e.keyCode == 32) {
+  accelerate(-0.5)
+  }
+  
+});
 
+window.addEventListener("keyup", function (e){
+  event.key = false
+  accelerate(0.3)
+});
 function accelerate(n) {
     myGamePiece.gravity = n;
-               accelerate.addEventListener('keydown', function (e) {
-      accelerate.key = 38;
-              accelerate(-0.5)
-    })
-    accelerate.addEventListener('keyup', function (e) {
-      accelerate.key = false;
-        accelerate(0.5)
-    })
 }
