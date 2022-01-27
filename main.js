@@ -12,8 +12,8 @@ function startGame() {
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
-        this.canvas.width = 480;
-        this.canvas.height = 270;
+        this.canvas.width = 725;
+        this.canvas.height = 470;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
@@ -121,8 +121,9 @@ window.addEventListener("keydown", function (e){
 
 window.addEventListener("keyup", function (e){
   event.key = false
-  accelerateBy = 0.3
-    accelerate
+  setInterval(function aaa() {  accelerateBy = accelerateBy + 0.3}, 1000)
+accelerateBy = 0.3
+    accelerate()
 });
 function accelerate() {
     myGamePiece.gravity = accelerateBy;
