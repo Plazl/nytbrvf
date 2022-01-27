@@ -1,6 +1,7 @@
 var myGamePiece;
 var myObstacles = [];
 var myScore;
+var highScore;
 
 function startGame() {
     myGamePiece = new component(30, 30, "red", 10, 120);
@@ -8,7 +9,6 @@ function startGame() {
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start();
 }
-
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
@@ -51,11 +51,19 @@ function component(width, height, color, x, y, type) {
         this.x += this.speedX;
         this.y += this.speedY + this.gravitySpeed;
         this.hitBottom();
+        this.hitTop();
     }
     this.hitBottom = function() {
         var rockbottom = myGameArea.canvas.height - this.height;
         if (this.y > rockbottom) {
             this.y = rockbottom;
+            this.gravitySpeed = 0;
+        }
+    }
+       this.hitTop = function() {
+        var rocktop = myGameArea.canvas.height / this.height - 15;
+        if (this.y < rocktop) {
+            this.y = rocktop;
             this.gravitySpeed = 0;
         }
     }
@@ -87,11 +95,11 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     if (myGameArea.frameNo == 1 || everyinterval(150)) {
         x = myGameArea.canvas.width;
-        minHeight = 20;
-        maxHeight = 200;
+        minHeight = 150;
+        maxHeight = 190;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-        minGap = 50;
-        maxGap = 200;
+        minGap = 90;
+        maxGap = 170;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
         myObstacles.push(new component(10, height, "green", x, 0));
         myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
@@ -111,12 +119,13 @@ function everyinterval(n) {
     return false;
 }
 window.addEventListener("keydown", function (e){
-  event.key = e.keyCode
+
   if (e.keyCode == 32) {
   accelerateBy = -0.5
       accelerate()
+    
+   
   }
-  
 });
 
 window.addEventListener("keyup", function (e){
