@@ -113,15 +113,17 @@ function everyinterval(n) {
 window.addEventListener("keydown", function (e){
   event.key = e.keyCode
   if (e.keyCode == 32) {
-  accelerate(-0.5)
+  accelerateBy = -0.5
+      accelerate()
   }
   
 });
 
 window.addEventListener("keyup", function (e){
   event.key = false
-  accelerate(0.3)
+  accelerateBy = 0.3
+    accelerate
 });
-function accelerate(n) {
-    myGamePiece.gravity = n;
+function accelerate() {
+    myGamePiece.gravity = accelerateBy;
 }
