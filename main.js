@@ -4,7 +4,7 @@ var myScore;
 var highScore;
 
 function startGame() {
-    myGamePiece = new component(30, 30, "red", 10, 120, "image");
+    myGamePiece = new component(30, 30, "red", 10, 120);
     myGamePiece.gravity = 0.3;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start();
