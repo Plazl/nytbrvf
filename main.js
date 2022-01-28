@@ -26,10 +26,6 @@ var myGameArea = {
 
 function component(width, height, color, x, y, type) {
     this.type = type;
-     if (type == "image") {
-    this.image = new Image();
-    this.image.src = color;
-  }
     this.score = 0;
     this.width = width;
     this.height = height;
@@ -41,12 +37,6 @@ function component(width, height, color, x, y, type) {
     this.gravitySpeed = 0;
     this.update = function() {
         ctx = myGameArea.context;
-         if (type == "image") {
-      ctx.drawImage(this.image,
-        this.x,
-        this.y,
-        this.width, this.height);
-    } else {
         if (this.type == "text") {
             ctx.font = this.width + " " + this.height;
             ctx.fillStyle = color;
