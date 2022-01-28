@@ -4,7 +4,7 @@ var myScore;
 var highScore;
 
 function startGame() {
-    myGamePiece = new component(30, 30, "red", 10, 120);
+    myGamePiece = new component(30, 30, "red", 10, 120, "image");
     myGamePiece.gravity = 0.3;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start();
@@ -26,6 +26,10 @@ var myGameArea = {
 
 function component(width, height, color, x, y, type) {
     this.type = type;
+     if (type == "image") {
+    this.image = new Image();
+    this.image.src = color;
+  }
     this.score = 0;
     this.width = width;
     this.height = height;
@@ -37,6 +41,12 @@ function component(width, height, color, x, y, type) {
     this.gravitySpeed = 0;
     this.update = function() {
         ctx = myGameArea.context;
+         if (type == "image") {
+      ctx.drawImage(this.image,
+        this.x,
+        this.y,
+        this.width, this.height);
+    } else {
         if (this.type == "text") {
             ctx.font = this.width + " " + this.height;
             ctx.fillStyle = color;
@@ -104,7 +114,7 @@ function updateGameArea() {
         myObstacles.push(new component(25, height, "green", x, 0));
         myObstacles.push(new component(25, x - height - gap, "green", x, height + gap));
     }
-    for (i = 0; i < myObstacles.length; i += 2) {
+    for (i = 0; i < myObstacles.length; i += 1) {
         myObstacles[i].x += -3;
         myObstacles[i].update();
     }
