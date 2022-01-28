@@ -101,11 +101,11 @@ function updateGameArea() {
         minGap = 90;
         maxGap = 170;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        myObstacles.push(new component(10, height, "green", x, 0));
-        myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+        myObstacles.push(new component(25, height, "green", x, 0));
+        myObstacles.push(new component(25, x - height - gap, "green", x, height + gap));
     }
-    for (i = 0; i < myObstacles.length; i += 1) {
-        myObstacles[i].x += -1;
+    for (i = 0; i < myObstacles.length; i += 2) {
+        myObstacles[i].x += -3;
         myObstacles[i].update();
     }
     myScore.text="SCORE: " + myGameArea.frameNo;
@@ -123,7 +123,7 @@ function everyinterval(n) {
 
 let isKeyDown = false;
 
-document.addEventListener("keydown", (event) => {
+window.addEventListener("keydown", (event) => {
     if (event.keyCode == 32) {
         if (isKeyDown) { return; } 
         isKeyDown = true;
@@ -132,7 +132,7 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-document.addEventListener("keyup", (event) => {
+window.addEventListener("keyup", (event) => {
     if (event.keyCode == 32) {
         isKeyDown = false;
           setInterval(function aaa() {  accelerateBy = accelerateBy + 0.3},          1000)
