@@ -118,21 +118,27 @@ function everyinterval(n) {
     if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
     return false;
 }
-window.addEventListener("keydown", function (e){
 
-  if (e.keyCode == 32) {
-  accelerateBy = -0.5
+
+
+let isKeyDown = false;
+
+document.addEventListener("keydown", (event) => {
+    if (event.keyCode == 32) {
+        if (isKeyDown) { return; } 
+        isKeyDown = true;
+       accelerateBy = -0.5
       accelerate()
-    
-   
-  }
+    }
 });
 
-window.addEventListener("keyup", function (e){
-  event.key = false
-  setInterval(function aaa() {  accelerateBy = accelerateBy + 0.3}, 1000)
+document.addEventListener("keyup", (event) => {
+    if (event.keyCode == 32) {
+        isKeyDown = false;
+          setInterval(function aaa() {  accelerateBy = accelerateBy + 0.3},          1000)
 accelerateBy = 0.3
     accelerate()
+    }
 });
 function accelerate() {
     myGamePiece.gravity = accelerateBy;
