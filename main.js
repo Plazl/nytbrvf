@@ -105,7 +105,7 @@ function updateGameArea() {
         myObstacles.push(new component(25, x - height - gap, "green", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
-        myObstacles[i].x += -3;
+        myObstacles[i].x += -1;
         myObstacles[i].update();
     }
     myScore.text="SCORE: " + myGameArea.frameNo;
