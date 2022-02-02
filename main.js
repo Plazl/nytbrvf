@@ -122,10 +122,8 @@ function everyinterval(n) {
 
 
 let isKeyDown = false;
-
-window.addEventListener("keydown", (event) => {
-   
-        if (isKeyDown == true) { return; } 
+function testForKeyDown() {
+ if (isKeyDown == true) { return; } 
         
         else {
             if (event.keyCode == 32) {
@@ -134,16 +132,16 @@ window.addEventListener("keydown", (event) => {
       accelerate()
         }
     }
-        
-});
-
-window.addEventListener("keyup", (event) => {
-        isKeyDown = false;
-          setInterval(function aaa() {  accelerateBy = accelerateBy + 0.3},          100)
+}
+function testForKeyUp() {
+       isKeyDown = false;
+          setInterval(function aaa() {  accelerateBy = accelerateBy + 0.3}, 100)
 accelerateBy = 0.3
     accelerate()
-    
-});
+}
+window.addEventListener("keydown", testForKeyDown, true);
+
+window.removeEventListener("keyup", testForKeyUp, true);
 function accelerate() {
     myGamePiece.gravity = accelerateBy;
 }
