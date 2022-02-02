@@ -86,7 +86,7 @@ function component(width, height, color, x, y, type) {
 
 function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
-    for (i = 0; i < myObstacles.length; i +=1) {
+    for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) {
             return;
         } 
@@ -122,26 +122,24 @@ function everyinterval(n) {
 
 
 let isKeyDown = false;
-function testForKeyDown() {
- if (isKeyDown == true) { return; } 
-        
-        else {
-            if (event.keyCode == 32) {
+
+window.addEventListener("keydown", (event) => {
+    if (event.keyCode == 32) {
+        if (isKeyDown) { return; } 
         isKeyDown = true;
        accelerateBy = -0.5
       accelerate()
-        }
     }
-}
-function testForKeyUp() {
-       isKeyDown = false;
-          setInterval(function aaa() {  accelerateBy = accelerateBy + 0.3}, 100)
+});
+
+window.addEventListener("keyup", (event) => {
+    if (event.keyCode == 32) {
+        isKeyDown = false;
+          setInterval(function aaa() {  accelerateBy = accelerateBy + 0.3},          1000)
 accelerateBy = 0.3
     accelerate()
-}
-window.addEventListener("keydown", testForKeyDown, true);
-
-window.removeEventListener("keyup", testForKeyUp, true);
+    }
+});
 function accelerate() {
     myGamePiece.gravity = accelerateBy;
 }
