@@ -138,12 +138,11 @@ window.addEventListener("keydown", (event) => {
 });
 
 window.addEventListener("keyup", (event) => {
-    if (event.keyCode == 32) {
         isKeyDown = false;
           setInterval(function aaa() {  accelerateBy = accelerateBy + 0.3},          100)
 accelerateBy = 0.3
     accelerate()
-    }
+    
 });
 function accelerate() {
     myGamePiece.gravity = accelerateBy;
